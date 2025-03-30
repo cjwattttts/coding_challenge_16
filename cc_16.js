@@ -19,6 +19,7 @@ async function fetchProductsAsync() { // fetches products using async/await
     try {
       const response = await fetch('https://www.course-api.com/javascript-store-products'); // fetches product data
       const products = await response.json(); // parses the response to JSON
+      console.log(products); // log the response to check what is returned
       displayProducts(products); // displays the products
     } catch (error) { // catches and logs errors
       handleError(error); // calls handleError to log errors
