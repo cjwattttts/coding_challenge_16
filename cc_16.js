@@ -27,7 +27,7 @@ async function fetchProductsAsync() { // fetches products using async/await
   
   fetchProductsAsync(); // triggers the function to fetch products
   
-  //TASK 4
+//TASK 4
 function displayProducts(products) { // displays the fetched products
     const productContainer = document.getElementById('product-container'); // selects the product container
   
@@ -55,3 +55,7 @@ function displayProducts(products) { // displays the fetched products
     });
   }
   
+//TASK 5
+function handleError(error) { // logs the error message
+    console.log('An error occurred:', error); // logs the error with a message
+  }
