@@ -28,33 +28,36 @@ async function fetchProductsAsync() { // fetches products using async/await
   
   fetchProductsAsync(); // triggers the function to fetch products
   
-//TASK 4
-function displayProducts(products) { // displays the fetched products
+  function displayProducts(products) { // displays the fetched products
     const productContainer = document.getElementById('product-container'); // selects the product container
-  
+
     // loops through the first 5 products
     products.slice(0, 5).forEach(product => {
       const productDiv = document.createElement('div'); // creates a div for the product
       productDiv.classList.add('product'); // adds a class for styling
-  
+
       const name = document.createElement('h3'); // creates the name element
-      name.textContent = product.name; // sets the product name
-  
+      name.textContent = product.fields.name; // sets the product name from the fields object
+
       const price = document.createElement('p'); // creates the price element
-      price.textContent = `$${product.price.toFixed(2)}`; // sets the product price
-  
+      if (product.fields.price !== undefined) { // checks if the price exists in fields
+        price.textContent = `$${product.fields.price.toFixed(2)}`; // sets the product price if it exists
+      } else {
+        price.textContent = "Price not available"; // sets a fallback message if price is undefined
+      }
+
       const img = document.createElement('img'); // creates the image element
-      img.src = product.image; // sets the product image source
-      img.alt = product.name; // sets the alt attribute for the image
-  
+      img.src = product.fields.image[0].url; // sets the product image URL from the fields object
+      img.alt = product.fields.name; // sets the alt attribute for the image
+
       // appends elements to the product div
       productDiv.appendChild(name);
       productDiv.appendChild(price);
       productDiv.appendChild(img);
-  
+
       productContainer.appendChild(productDiv); // appends the product div to the container
     });
-  }
+}
   
 //TASK 5
 function handleError(error) { // logs the error message
